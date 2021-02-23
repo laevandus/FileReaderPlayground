@@ -176,7 +176,10 @@ private extension CountableRange where Bound: SignedInteger {
     }
     
     func intersects(_ other: Self) -> Bool {
-        guard !other.isEmpty else { return false }
+        guard !isEmpty, !other.isEmpty else { return false }
+        if other.contains(startIndex) || other.contains(endIndex - 1) {
+            return true
+        }
         return contains(other.startIndex) || contains(other.endIndex - 1)
     }
 }
