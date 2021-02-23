@@ -93,7 +93,8 @@ final class FileMemoryCache {
                     // Start: |++++++++++---|
                     return 0..<byteRange.endIndex - storageItem.byteRange.startIndex
                 case (false, false):
-                    fatalError("Incorrect match")
+                    // Middle: |---+++++++---|
+                    return byteRange.startIndex - storageItem.byteRange.startIndex..<byteRange.endIndex - storageItem.byteRange.startIndex
                 }
             }()
             // Find the byte range in the allocated memory range where to copy the cached data section
